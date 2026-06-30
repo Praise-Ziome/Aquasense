@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AquaSense — Water Quality Intelligence at Industrial Scale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- icon sprite (hidden) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="ic-stroke" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></g>
+  </defs>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2C12 2 5 11 5 15.5A7 7 0 0 0 19 15.5C19 11 12 2 12 2z"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="2,12 7,12 9.5,5 13.5,19 16,12 22,12"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></symbol>
+  <symbol id="i-bar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="20" x2="6" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="14"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><line x1="2.5" y1="12" x2="21.5" y2="12"/><path d="M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><polygon fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" points="13,2 4,14 11,14 10,22 20,9 12,9"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><polygon points="12,2.5 2.5,7.5 12,12.5 21.5,7.5"/><polyline points="2.5,12.5 12,17.5 21.5,12.5" stroke-linecap="round"/><polyline points="2.5,17 12,22 21.5,17" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.5a6 6 0 1 0-12 0c0 6.5-3 8.5-3 8.5h18s-3-2-3-8.5"/><path d="M13.7 20.5a2 2 0 0 1-3.4 0"/></g></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="6,9 12,15 18,9"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14,6 20,12 14,18"/></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+</svg>
+
+<header class="navbar">
+  <div class="nav-left">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-droplet"/></svg></span>
+      AquaSense
+    </a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Overview</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="analytics.html">Analytics</a>
+    </nav>
+  </div>
+  <div class="nav-right">
+    <a class="user-chip" href="#">
+      <span class="avatar">AK</span>
+      Arjun K.
+      <svg class="chevron" viewBox="0 0 24 24"><use href="#i-chevron"/></svg>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="eyebrow-pill"><span class="live-dot" style="margin-right:0;"></span>&nbsp;LIVE · 2,400+ SENSORS ONLINE</span>
+    <h1>Water quality<br><span class="accent">intelligence</span> at<br>industrial scale.</h1>
+    <p class="lede">AquaSense gives aquaculture farms and environmental agencies real-time visibility into pH, temperature, turbidity, and 12 other water parameters — with predictive alerts before problems occur.</p>
+    <div class="hero-actions">
+      <a href="dashboard.html" class="btn btn-primary btn-lg">Open Dashboard <svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow-right"/></svg></a>
+      <a href="analytics.html" class="btn btn-ghost btn-lg">View Analytics <svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-bar"/></svg></a>
+    </div>
+
+    <div class="live-feed">
+      <div class="live-feed-head">
+        <span class="left"><span class="live-dot"></span>Live feed — Pond Network · Zone 1-4</span>
+        <span class="timestamp" data-clock>6:42:02 PM</span>
+      </div>
+      <div class="metric-row">
+        <div class="metric-cell">
+          <div class="label">pH</div>
+          <div class="value cyan">7.4</div>
+          <div class="status">Normal</div>
+        </div>
+        <div class="metric-cell">
+          <div class="label">Temperature</div>
+          <div class="value teal">22.8°C</div>
+          <div class="status">Normal</div>
+        </div>
+        <div class="metric-cell">
+          <div class="label">Turbidity</div>
+          <div class="value purple">3.2 NTU</div>
+          <div class="status">Normal</div>
+        </div>
+        <div class="metric-cell">
+          <div class="label">WQI Score</div>
+          <div class="value amber">82/100</div>
+          <div class="status">Good</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stat-strip">
+    <div><div class="stat-num">2,400+</div><div class="stat-label">Active Sensors</div></div>
+    <div><div class="stat-num">99.97%</div><div class="stat-label">Uptime SLA</div></div>
+    <div><div class="stat-num">47ms</div><div class="stat-label">Avg Latency</div></div>
+    <div><div class="stat-num">18M+</div><div class="stat-label">Readings/day</div></div>
+  </section>
+
+  <div class="page-shell">
+    <div class="section-head">
+      <span class="section-eyebrow">Platform Capabilities</span>
+      <h2>Built for operations at scale</h2>
+    </div>
+
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="cap-icon icon-cyan"><svg width="20" height="20" viewBox="0 0 24 24"><use href="#i-activity"/></svg></div>
+        <h3>Real-time Monitoring</h3>
+        <p>Sub-second sensor readings across unlimited deployment zones. 99.97% uptime SLA guaranteed.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon icon-green"><svg width="20" height="20" viewBox="0 0 24 24"><use href="#i-shield"/></svg></div>
+        <h3>Smart Alert Engine</h3>
+        <p>Multi-threshold alerting with configurable escalation paths. Integrates with Slack, PagerDuty, and email.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon icon-purple"><svg width="20" height="20" viewBox="0 0 24 24"><use href="#i-bar"/></svg></div>
+        <h3>Predictive Analytics</h3>
+        <p>ML-powered trend forecasting detects water quality issues 48 hours before they become critical.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon icon-amber"><svg width="20" height="20" viewBox="0 0 24 24"><use href="#i-globe"/></svg></div>
+        <h3>Multi-site Management</h3>
+        <p>Manage thousands of sensors across facilities globally from a single unified control plane.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon icon-red"><svg width="20" height="20" viewBox="0 0 24 24"><use href="#i-zap"/></svg></div>
+        <h3>Edge Processing</h3>
+        <p>On-device ML inference reduces latency to &lt;50ms and keeps data secure within your perimeter.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon icon-blue"><svg width="20" height="20" viewBox="0 0 24 24"><use href="#i-layers"/></svg></div>
+        <h3>Regulatory Compliance</h3>
+        <p>Automated report generation for EPA, WHO, and ISO 14001 audit trails. Export-ready at any time.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div class="cta-inner">
+      <span class="section-eyebrow">Start Monitoring Today</span>
+      <h2>Deploy your first sensor in minutes</h2>
+      <p>Connect hardware, configure thresholds, and get alerts — no infrastructure required. Free 30-day trial for new deployments.</p>
+      <a href="dashboard.html" class="btn btn-primary btn-lg">Launch Dashboard <svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-arrow-right"/></svg></a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <span class="brand-mark" style="width:22px;height:22px;"><svg width="12" height="12" viewBox="0 0 24 24"><use href="#i-droplet"/></svg></span>
+    AquaSense&nbsp;&nbsp;© 2026 AquaSense Technologies
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Docs</a>
+    <a href="#">Status<span class="status-dot"></span></a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

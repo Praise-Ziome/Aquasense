@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Analytics — AquaSense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- icon sprite (hidden) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs></defs>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2C12 2 5 11 5 15.5A7 7 0 0 0 19 15.5C19 11 12 2 12 2z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.5a6 6 0 1 0-12 0c0 6.5-3 8.5-3 8.5h18s-3-2-3-8.5"/><path d="M13.7 20.5a2 2 0 0 1-3.4 0"/></g></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="6,9 12,15 18,9"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><line x1="2.5" y1="12" x2="21.5" y2="12"/><path d="M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><polyline points="7,10 12,15 17,10"/><path d="M5 19.5h14"/></g></symbol>
+</svg>
+
+<header class="navbar">
+  <div class="nav-left">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-droplet"/></svg></span>
+      AquaSense
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="analytics.html" class="active">Analytics</a>
+    </nav>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" aria-label="Notifications">
+      <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-bell"/></svg>
+      <span class="notif-dot">5</span>
+    </button>
+    <a class="user-chip" href="#">
+      <span class="avatar">AK</span>
+      Arjun K.
+      <svg class="chevron" viewBox="0 0 24 24"><use href="#i-chevron"/></svg>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="breadcrumb-row">
+  <div class="breadcrumb">
+    <svg width="13" height="13" viewBox="0 0 24 24"><use href="#i-globe"/></svg>
+    All Zones <span class="sep">›</span> <span class="current">Analytics</span>
+  </div>
+  <div class="timestamp" data-datetime-clock>6/29/2026, 6:43:42 PM</div>
+</div>
+
+<div class="page-head">
+  <div>
+    <h1>Analytics</h1>
+    <p class="sub">Historical water quality data — all zones</p>
+  </div>
+  <div class="head-actions">
+    <div class="btn-toggle-group">
+      <button class="btn-toggle active" id="rangeWeek">7 Days</button>
+      <button class="btn-toggle" id="rangeMonth">30 Days</button>
+    </div>
+    <button class="btn btn-ghost"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#i-download"/></svg> Export CSV</button>
+  </div>
+</div>
+
+<!-- summary stats -->
+<div class="stat-mini-grid">
+  <div class="stat-mini">
+    <div class="label">Avg pH</div>
+    <div class="value" style="color:var(--cyan);">7.34</div>
+    <div class="delta">±0.18 over period</div>
+  </div>
+  <div class="stat-mini">
+    <div class="label">Avg Temp</div>
+    <div class="value" style="color:var(--teal);">22.9°C</div>
+    <div class="delta">±1.4°C over period</div>
+  </div>
+  <div class="stat-mini">
+    <div class="label">Avg Turbidity</div>
+    <div class="value" style="color:var(--purple);">3.6 NTU</div>
+    <div class="delta">±0.8 over period</div>
+  </div>
+  <div class="stat-mini">
+    <div class="label">Avg WQI</div>
+    <div class="value" style="color:var(--amber);">82.7</div>
+    <div class="delta">↑ 4.2 pts over period</div>
+  </div>
+</div>
+
+<!-- WQI bar chart -->
+<div class="page-shell" style="margin-bottom:18px;">
+  <div class="card chart-card">
+    <div class="card-head">
+      <h3>Water Quality Index — 7-day trend <span class="meta" style="font-weight:400;">&nbsp;Daily WQI score averaged across all active sensors</span></h3>
+    </div>
+    <div class="chart-body" style="min-height:300px;"><canvas id="wqiBarChart"></canvas></div>
+  </div>
+</div>
+
+<!-- ph + temp line charts -->
+<div class="analytics-row2">
+  <div class="card chart-card">
+    <div class="card-head">
+      <h3>pH Levels <span class="meta" style="font-weight:400;">&nbsp;Optimal range: 6.5–8.5</span></h3>
+    </div>
+    <div class="chart-body"><canvas id="phLineChart"></canvas></div>
+  </div>
+  <div class="card chart-card">
+    <div class="card-head">
+      <h3>Temperature <span class="meta" style="font-weight:400;">&nbsp;Target range: 18–26°C</span></h3>
+    </div>
+    <div class="chart-body"><canvas id="tempLineChart"></canvas></div>
+  </div>
+</div>
+
+<!-- raw readings table -->
+<div class="card table-card">
+  <div class="card-head">
+    <h3>Raw Readings</h3>
+    <span class="meta">Showing 7 records</span>
+  </div>
+  <div class="table-wrap">
+    <table class="readings">
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>pH</th>
+          <th>Temperature</th>
+          <th>Turbidity</th>
+          <th>WQI Score</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="period-col">Mon</td><td class="ph-col">7.3</td><td class="temp-col">22.1°C</td><td class="turb-col">3.4 NTU</td><td class="wqi-col">84</td><td><span class="badge badge-green">Good</span></td></tr>
+        <tr><td class="period-col">Tue</td><td class="ph-col">7.5</td><td class="temp-col">23.2°C</td><td class="turb-col">2.9 NTU</td><td class="wqi-col">87</td><td><span class="badge badge-green">Good</span></td></tr>
+        <tr><td class="period-col">Wed</td><td class="ph-col">7.2</td><td class="temp-col">24.1°C</td><td class="turb-col">4.1 NTU</td><td class="wqi-col">79</td><td><span class="badge badge-green">Good</span></td></tr>
+        <tr><td class="period-col">Thu</td><td class="ph-col">7.6</td><td class="temp-col">22.8°C</td><td class="turb-col">3 NTU</td><td class="wqi-col">88</td><td><span class="badge badge-green">Good</span></td></tr>
+        <tr><td class="period-col">Fri</td><td class="ph-col">7.4</td><td class="temp-col">21.9°C</td><td class="turb-col">3.8 NTU</td><td class="wqi-col">82</td><td><span class="badge badge-green">Good</span></td></tr>
+        <tr><td class="period-col">Sat</td><td class="ph-col">7.1</td><td class="temp-col">23.5°C</td><td class="turb-col">5.2 NTU</td><td class="wqi-col">74</td><td><span class="badge badge-amber">Fair</span></td></tr>
+        <tr><td class="period-col">Sun</td><td class="ph-col">7.3</td><td class="temp-col">22.4°C</td><td class="turb-col">3.1 NTU</td><td class="wqi-col">85</td><td><span class="badge badge-green">Good</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <span class="brand-mark" style="width:22px;height:22px;"><svg width="12" height="12" viewBox="0 0 24 24"><use href="#i-droplet"/></svg></span>
+    AquaSense&nbsp;&nbsp;© 2026 AquaSense Technologies
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Docs</a>
+    <a href="#">Status<span class="status-dot"></span></a>
+  </div>
+</footer>
+
+<script src="chart.umd.min.js"></script>
+<script src="script.js"></script>
+<script>
+  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const wqiVals = [84,87,79,88,82,74,85];
+  const phVals = [7.3,7.5,7.2,7.6,7.4,7.1,7.3];
+  const tempVals = [22.1,23.2,24.1,22.8,21.9,23.5,22.4];
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // 7-day toggle (visual only — re-renders same dataset for now)
+    const wkBtn = document.getElementById("rangeWeek");
+    const moBtn = document.getElementById("rangeMonth");
+    if (wkBtn && moBtn) {
+      wkBtn.addEventListener("click", () => { wkBtn.classList.add("active"); moBtn.classList.remove("active"); });
+      moBtn.addEventListener("click", () => { moBtn.classList.add("active"); wkBtn.classList.remove("active"); });
+    }
+
+    if (typeof Chart === "undefined") return;
+
+    new Chart(document.getElementById("wqiBarChart"), {
+      type: "bar",
+      data: {
+        labels: days,
+        datasets: [{
+          data: wqiVals,
+          backgroundColor: window.AQ_alpha(window.AQ_COLORS.teal, 0.85),
+          borderRadius: 5,
+          maxBarThickness: 46,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { min: 60, max: 100, grid: { color: window.AQ_COLORS.grid } },
+        },
+      },
+    });
+
+    new Chart(document.getElementById("phLineChart"), {
+      type: "line",
+      data: {
+        labels: days,
+        datasets: [{
+          data: phVals,
+          borderColor: window.AQ_COLORS.cyan,
+          backgroundColor: window.AQ_alpha(window.AQ_COLORS.cyan, 0.12),
+          fill: true,
+          tension: 0.45,
+          pointRadius: 0,
+          borderWidth: 2,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { min: 6.5, max: 8.5, grid: { color: window.AQ_COLORS.grid } },
+        },
+      },
+    });
+
+    new Chart(document.getElementById("tempLineChart"), {
+      type: "line",
+      data: {
+        labels: days,
+        datasets: [{
+          data: tempVals,
+          borderColor: window.AQ_COLORS.teal,
+          backgroundColor: window.AQ_alpha(window.AQ_COLORS.teal, 0.12),
+          fill: true,
+          tension: 0.45,
+          pointRadius: 0,
+          borderWidth: 2,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { min: 18, max: 30, grid: { color: window.AQ_COLORS.grid } },
+        },
+      },
+    });
+  });
+</script>
+</body>
+</html>

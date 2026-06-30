@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operations Dashboard — AquaSense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- icon sprite (hidden) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs></defs>
+  <symbol id="i-droplet" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 2C12 2 5 11 5 15.5A7 7 0 0 0 19 15.5C19 11 12 2 12 2z"/></symbol>
+  <symbol id="i-thermometer" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.8V4.5a2 2 0 1 1 4 0v9.3a4.2 4.2 0 1 1-4 0z"/></g></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="2,12 7,12 9.5,5 13.5,19 16,12 22,12"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a16 16 0 0 1 20 0"/><path d="M5.2 12.2a11.3 11.3 0 0 1 13.6 0"/><path d="M8.5 15.8a6.3 6.3 0 0 1 7 0"/><circle cx="12" cy="19.3" r="1" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.5a6 6 0 1 0-12 0c0 6.5-3 8.5-3 8.5h18s-3-2-3-8.5"/><path d="M13.7 20.5a2 2 0 0 1-3.4 0"/></g></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="6,9 12,15 18,9"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><line x1="2.5" y1="12" x2="21.5" y2="12"/><path d="M12 2.5c3 3 3 16 0 19M12 2.5c-3 3-3 16 0 19" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><polyline points="7,10 12,15 17,10"/><path d="M5 19.5h14"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></g></symbol>
+  <symbol id="i-alert-tri" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><line x1="12" y1="9.5" x2="12" y2="14"/><circle cx="12" cy="16.8" r="0.7" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="i-alert-oct" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></g></symbol>
+  <symbol id="i-trend-up" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,17 9,11 13,15 21,6"/><polyline points="14,6 21,6 21,13"/></g></symbol>
+  <symbol id="i-trend-down" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,7 9,13 13,9 21,18"/><polyline points="14,18 21,18 21,11"/></g></symbol>
+</svg>
+
+<header class="navbar">
+  <div class="nav-left">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"><svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-droplet"/></svg></span>
+      AquaSense
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="analytics.html">Analytics</a>
+    </nav>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" aria-label="Notifications">
+      <svg width="16" height="16" viewBox="0 0 24 24"><use href="#i-bell"/></svg>
+      <span class="notif-dot">5</span>
+    </button>
+    <a class="user-chip" href="#">
+      <span class="avatar">AK</span>
+      Arjun K.
+      <svg class="chevron" viewBox="0 0 24 24"><use href="#i-chevron"/></svg>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="breadcrumb-row">
+  <div class="breadcrumb">
+    <svg width="13" height="13" viewBox="0 0 24 24"><use href="#i-globe"/></svg>
+    All Zones <span class="sep">›</span> <span class="current">Operations Dashboard</span>
+  </div>
+  <div class="timestamp" data-datetime-clock>6/29/2026, 6:43:28 PM</div>
+</div>
+
+<div class="page-head">
+  <div>
+    <h1>Operations Dashboard</h1>
+    <p class="sub"><span class="live-dot"></span>Live · Last updated <span data-clock>6:43:28 PM</span></p>
+  </div>
+  <div class="head-actions">
+    <button class="btn btn-ghost">All Zones <svg width="13" height="13" viewBox="0 0 24 24"><use href="#i-chevron"/></svg></button>
+    <button class="btn btn-ghost"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#i-download"/></svg> Export</button>
+  </div>
+</div>
+
+<!-- KPI cards -->
+<div class="metric-grid">
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <span class="kpi-label"><span class="ic icon-cyan"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#i-droplet"/></svg></span>pH Level</span>
+      <span class="badge badge-green">Normal</span>
+    </div>
+    <div class="kpi-value">7.44 <span class="unit">pH</span></div>
+    <div class="kpi-spark"><canvas id="sparkPh"></canvas></div>
+    <div class="kpi-delta up"><svg width="11" height="11" viewBox="0 0 24 24"><use href="#i-trend-up"/></svg>+0.02 vs last hour</div>
+  </div>
+
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <span class="kpi-label"><span class="ic icon-green"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#i-thermometer"/></svg></span>Temperature</span>
+      <span class="badge badge-green">Normal</span>
+    </div>
+    <div class="kpi-value">23.6 <span class="unit">°C</span></div>
+    <div class="kpi-spark"><canvas id="sparkTemp"></canvas></div>
+    <div class="kpi-delta down"><svg width="11" height="11" viewBox="0 0 24 24"><use href="#i-trend-down"/></svg>-0.3°C vs last hour</div>
+  </div>
+
+  <div class="kpi-card">
+    <div class="kpi-top">
+      <span class="kpi-label"><span class="ic icon-purple"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#i-eye"/></svg></span>Turbidity</span>
+      <span class="badge badge-green">Normal</span>
+    </div>
+    <div class="kpi-value">3.4 <span class="unit">NTU</span></div>
+    <div class="kpi-spark"><canvas id="sparkTurb"></canvas></div>
+    <div class="kpi-delta up"><svg width="11" height="11" viewBox="0 0 24 24"><use href="#i-trend-up"/></svg>+0.4 vs last hour</div>
+  </div>
+
+  <div class="kpi-card wqi-card">
+    <div class="kpi-top">
+      <span class="kpi-label"><span class="ic icon-blue"><svg width="14" height="14" viewBox="0 0 24 24"><use href="#i-activity"/></svg></span>Water Quality Index</span>
+    </div>
+    <div class="wqi-gauge-row">
+      <div class="gauge-wrap" data-gauge data-value="82" data-max="100" data-color="#28d9f0">
+        <div class="gauge-center"><span class="num">82</span><span class="of100">/100</span></div>
+      </div>
+      <div class="wqi-meta">
+        <div class="row"><span class="k">Status</span><span class="v status-good">Good</span></div>
+        <div class="row"><span class="k">Trend</span><span class="v trend">+3.2 pts today</span></div>
+        <div class="row"><span class="k">7-Day Avg</span><span class="v">79.4</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- trend + sensor network -->
+<div class="dash-row">
+  <div class="card chart-card">
+    <div class="card-head">
+      <h3>24h Trend <span class="meta" style="font-weight:400;">&nbsp;pH · Temperature · Turbidity</span></h3>
+      <div class="chart-legend">
+        <span class="legend-item"><span class="legend-dot" style="background:#28d9f0"></span>pH</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#2ee6b8"></span>Temp</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#b18cf7"></span>Turbidity</span>
+      </div>
+    </div>
+    <div class="chart-body"><canvas id="trendChart"></canvas></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h3><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-wifi"/></svg>Sensor Network</h3>
+      <span class="meta">4/8 online</span>
+    </div>
+    <div class="sensor-list scroll-y">
+      <div class="sensor-row">
+        <svg class="sensor-ic" width="15" height="15" viewBox="0 0 24 24"><use href="#i-wifi"/></svg>
+        <div class="sensor-main">
+          <span class="id">S-001</span><span class="pond">Pond A</span>
+          <div class="readings">pH 7.4&nbsp;&nbsp;22.8°C&nbsp;&nbsp;3.2 NTU</div>
+        </div>
+        <div class="sensor-end"><span class="badge badge-green">Online</span><span class="pct">94%</span></div>
+      </div>
+      <div class="sensor-row is-critical">
+        <svg class="sensor-ic" width="15" height="15" viewBox="0 0 24 24"><use href="#i-wifi"/></svg>
+        <div class="sensor-main">
+          <span class="id">S-002</span><span class="pond">Pond A</span>
+          <div class="readings">pH 6.1&nbsp;&nbsp;23.1°C&nbsp;&nbsp;3.8 NTU</div>
+        </div>
+        <div class="sensor-end"><span class="badge badge-red">Critical</span><span class="pct">87%</span></div>
+      </div>
+      <div class="sensor-row">
+        <svg class="sensor-ic" width="15" height="15" viewBox="0 0 24 24"><use href="#i-wifi"/></svg>
+        <div class="sensor-main">
+          <span class="id">S-003</span><span class="pond">Pond B</span>
+          <div class="readings">pH 7.6&nbsp;&nbsp;21.4°C&nbsp;&nbsp;2.7 NTU</div>
+        </div>
+        <div class="sensor-end"><span class="badge badge-green">Online</span><span class="pct">76%</span></div>
+      </div>
+      <div class="sensor-row is-warning">
+        <svg class="sensor-ic" width="15" height="15" viewBox="0 0 24 24"><use href="#i-wifi"/></svg>
+        <div class="sensor-main">
+          <span class="id">S-004</span><span class="pond">Pond C</span>
+          <div class="readings">pH 7.3&nbsp;&nbsp;28.4°C&nbsp;&nbsp;3.1 NTU</div>
+        </div>
+        <div class="sensor-end"><span class="badge badge-amber">Warning</span><span class="pct">62%</span></div>
+      </div>
+      <div class="sensor-row">
+        <svg class="sensor-ic" width="15" height="15" viewBox="0 0 24 24"><use href="#i-wifi"/></svg>
+        <div class="sensor-main">
+          <span class="id">S-005</span><span class="pond">Pond D</span>
+          <div class="readings">pH 7.5&nbsp;&nbsp;22°C&nbsp;&nbsp;2.9 NTU</div>
+        </div>
+        <div class="sensor-end"><span class="badge badge-green">Online</span><span class="pct">88%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- alerts + wqi 24h -->
+<div class="dash-row">
+  <div class="card">
+    <div class="card-head">
+      <h3><svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-bell"/></svg>Alert Center</h3>
+      <span class="badge badge-red">5 Active</span>
+    </div>
+    <div class="alert-list scroll-y">
+      <div class="alert-item crit">
+        <button class="alert-dismiss" aria-label="Dismiss"><svg width="12" height="12" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+        <div class="alert-title"><svg width="13" height="13" viewBox="0 0 24 24"><use href="#i-alert-oct"/></svg>Pond A — Sensor 2</div>
+        <div class="alert-desc">pH level critical: 6.1 (below threshold 6.5)</div>
+        <div class="alert-time">2 min ago</div>
+      </div>
+      <div class="alert-item warn">
+        <button class="alert-dismiss" aria-label="Dismiss"><svg width="12" height="12" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+        <div class="alert-title"><svg width="13" height="13" viewBox="0 0 24 24"><use href="#i-alert-tri"/></svg>Pond C — Sensor 1</div>
+        <div class="alert-desc">Temperature spike: 28.4°C exceeds 28°C limit</div>
+        <div class="alert-time">14 min ago</div>
+      </div>
+      <div class="alert-item note">
+        <button class="alert-dismiss" aria-label="Dismiss"><svg width="12" height="12" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+        <div class="alert-title"><svg width="13" height="13" viewBox="0 0 24 24"><use href="#i-alert-tri"/></svg>Estuary — Sensor 5</div>
+        <div class="alert-desc">Turbidity elevated: 9.8 NTU (limit 8 NTU)</div>
+        <div class="alert-time">41 min ago</div>
+      </div>
+      <div class="alert-item crit">
+        <button class="alert-dismiss" aria-label="Dismiss"><svg width="12" height="12" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+        <div class="alert-title"><svg width="13" height="13" viewBox="0 0 24 24"><use href="#i-alert-oct"/></svg>Pond B — Sensor 3</div>
+        <div class="alert-desc">Dissolved oxygen low: 4.1 mg/L (below 5 mg/L)</div>
+        <div class="alert-time">58 min ago</div>
+      </div>
+      <div class="alert-item warn">
+        <button class="alert-dismiss" aria-label="Dismiss"><svg width="12" height="12" viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+        <div class="alert-title"><svg width="13" height="13" viewBox="0 0 24 24"><use href="#i-alert-tri"/></svg>Pond D — Sensor 4</div>
+        <div class="alert-desc">Signal latency above 200ms threshold</div>
+        <div class="alert-time">1 hr ago</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card chart-card">
+    <div class="card-head">
+      <h3>WQI Score — 24h <span class="meta" style="font-weight:400;">&nbsp;Water Quality Index trend</span></h3>
+      <svg width="15" height="15" viewBox="0 0 24 24"><use href="#i-trend-up"/></svg>
+    </div>
+    <div class="chart-body"><canvas id="wqiChart"></canvas></div>
+  </div>
+</div>
+
+<footer class="site-footer" style="margin-top:8px;">
+  <div class="footer-brand">
+    <span class="brand-mark" style="width:22px;height:22px;"><svg width="12" height="12" viewBox="0 0 24 24"><use href="#i-droplet"/></svg></span>
+    AquaSense&nbsp;&nbsp;© 2026 AquaSense Technologies
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Docs</a>
+    <a href="#">Status<span class="status-dot"></span></a>
+  </div>
+</footer>
+
+<script src="chart.umd.min.js"></script>
+<script src="script.js"></script>
+<script>
+  function sparkline(id, data, color) {
+    const ctx = document.getElementById(id);
+    if (!ctx || typeof Chart === "undefined") return;
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: data.map((_, i) => i),
+        datasets: [{
+          data,
+          borderColor: color,
+          borderWidth: 2,
+          pointRadius: 0,
+          tension: 0.4,
+          fill: true,
+          backgroundColor: window.AQ_alpha(color, 0.12),
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        scales: { x: { display: false }, y: { display: false } },
+        elements: { line: { borderJoinStyle: "round" } },
+      },
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    sparkline("sparkPh", [7.38,7.36,7.40,7.42,7.39,7.41,7.43,7.40,7.44,7.42,7.45,7.44], window.AQ_COLORS.cyan);
+    sparkline("sparkTemp", [23.9,23.8,23.7,23.9,24.0,23.8,23.6,23.7,23.5,23.6,23.7,23.6], window.AQ_COLORS.teal);
+    sparkline("sparkTurb", [3.0,3.1,2.9,3.3,3.5,3.2,3.6,3.1,3.4,3.7,3.3,3.4], window.AQ_COLORS.purple);
+
+    const trendCtx = document.getElementById("trendChart");
+    if (trendCtx && typeof Chart !== "undefined") {
+      const labels = ["00:00","02:00","04:00","06:00","08:00","10:00","12:00","14:00","16:00","18:00","20:00","22:00"];
+      new Chart(trendCtx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Temp",
+              data: [22,21.6,21.2,21.5,22.4,23.1,23.6,24.0,23.4,22.8,22.2,21.8],
+              borderColor: window.AQ_COLORS.teal,
+              borderDash: [3,3],
+              pointRadius: 0,
+              borderWidth: 1.5,
+              tension: 0.4,
+              yAxisID: "y",
+            },
+            {
+              label: "pH",
+              data: [7.2,7.3,7.25,7.3,7.35,7.4,7.45,7.5,7.42,7.38,7.36,7.4],
+              borderColor: window.AQ_COLORS.cyan,
+              pointRadius: 0,
+              borderWidth: 2,
+              tension: 0.4,
+              yAxisID: "y2",
+            },
+            {
+              label: "Turbidity",
+              data: [3.5,3.8,4.0,3.6,3.2,2.9,3.1,3.4,3.6,3.9,3.5,3.3],
+              borderColor: window.AQ_COLORS.purple,
+              borderDash: [2,3],
+              pointRadius: 0,
+              borderWidth: 1.5,
+              tension: 0.4,
+              yAxisID: "y",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: "index", intersect: false },
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { maxRotation: 0 } },
+            y: { min: 0, max: 28, grid: { color: window.AQ_COLORS.grid }, position: "left" },
+            y2: { display: false, min: 0, max: 14 },
+          },
+        },
+      });
+    }
+
+    const wqiCtx = document.getElementById("wqiChart");
+    if (wqiCtx && typeof Chart !== "undefined") {
+      const labels = ["00:00","05:00","10:00","15:00","20:00"];
+      new Chart(wqiCtx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{
+            data: [76,79,84,86,80,83,89,85,77,75,80,83,85,82],
+            borderColor: window.AQ_COLORS.teal,
+            backgroundColor: window.AQ_alpha(window.AQ_COLORS.teal, 0.15),
+            fill: true,
+            pointRadius: 0,
+            borderWidth: 2,
+            tension: 0.4,
+          }],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false } },
+            y: { min: 60, max: 100, grid: { color: window.AQ_COLORS.grid } },
+          },
+        },
+      });
+    }
+  });
+</script>
+</body>
+</html>
